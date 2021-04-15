@@ -8,3 +8,19 @@ body {
 .page {
   text-align: center;
 }
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  width: 6rem;
+  height: 6rem;
+  font-size: 4rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightcoral;
+}
