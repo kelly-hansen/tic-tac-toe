@@ -1,6 +1,8 @@
+import Page from './components/Page';
+
 function App() {
   return (
-    <div className="blue">Hello World</div>
+    <Page />
   );
 }
 
