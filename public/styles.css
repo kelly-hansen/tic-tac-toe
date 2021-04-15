@@ -9,6 +9,11 @@ body {
   text-align: center;
 }
 
+.board {
+  margin-top: 3rem;
+  display: inline-block;
+}
+
 .row {
   display: flex;
   justify-content: center;
@@ -22,5 +27,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightcoral;
+}
+
+.box:nth-child(1),
+.box:nth-child(2) {
+  border-right: 8px solid black;
+}
+
+.row:nth-child(1),
+.row:nth-child(2) {
+  border-bottom: 8px solid black;
 }
