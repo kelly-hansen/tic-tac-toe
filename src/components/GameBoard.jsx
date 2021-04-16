@@ -31,6 +31,11 @@ function GameBoard(props) {
       if (matrix[i][0] && matrix[i].every(val => val === matrix[i][0])) {
         return matrix[i][0];
       }
+      if (matrix[0][i] && matrix.every(arr => {
+        return arr[i] === matrix[0][i]
+        })) {
+          return matrix[0][i];
+      }
     }
     return false;
   }
