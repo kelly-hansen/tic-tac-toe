@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 
 function GameBoard(props) {
-  const [gameMatrix, setGameMatrix] = useState([['O', 'X'], [], []]);
+  const [gameMatrix, setGameMatrix] = useState([[null, null, null], [null, null, null], [null, null, null]]);
+
+  function handleBoxClick() {
+    props.toggleTurn();
+  }
 
   return (
     <div className="board">
@@ -9,9 +13,15 @@ function GameBoard(props) {
         gameMatrix.map((row, i) => {
           return (
             <div key={'row' + i} className="row">
-              <div className="box">{row[0]}</div>
-              <div className="box">{row[1]}</div>
-              <div className="box">{row[2]}</div>
+              {
+                row.map((box, j) => {
+                  return <div
+                    key={'box' + j}
+                    className="box"
+                    onClick={handleBoxClick}
+                  >{box}</div>
+                })
+              }
             </div>
           )
         })

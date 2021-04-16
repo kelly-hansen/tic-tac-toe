@@ -12,7 +12,7 @@ function Page() {
     <div className="page">
       <h1>Tic-Tac-Toe</h1>
       <p>It's {turn}'s turn</p>
-      <GameBoard />
+      <GameBoard turn={turn} toggleTurn={toggleTurn} />
     </div>
   );
 }
