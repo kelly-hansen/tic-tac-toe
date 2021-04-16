@@ -3,8 +3,17 @@ import React, { useState } from 'react';
 function GameBoard(props) {
   const [gameMatrix, setGameMatrix] = useState([[null, null, null], [null, null, null], [null, null, null]]);
 
-  function handleBoxClick() {
-    props.toggleTurn();
+  function handleBoxClick(e) {
+    const boxIndex = e.target.getAttribute('data-index').split('');
+    if (gameMatrix[boxIndex[0]][boxIndex[1]]) {
+      return;
+    } else {
+      setGameMatrix(prev => {
+        prev[boxIndex[0]][boxIndex[1]] = props.turn;
+        return prev;
+      });
+      props.toggleTurn();
+    }
   }
 
   return (
@@ -19,6 +28,7 @@ function GameBoard(props) {
                     key={'box' + j}
                     className="box"
                     onClick={handleBoxClick}
+                    data-index={'' + i + j}
                   >{box}</div>
                 })
               }
