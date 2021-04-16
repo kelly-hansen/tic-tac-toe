@@ -5,6 +5,20 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+button {
+  margin-top: 3rem;
+  background-color: blue;
+  color: white;
+  border: none;
+  font-size: 1.25rem;
+  border-radius: .25rem;
+  padding: 1rem;
+}
+
+.blue {
+  color: blue;
+}
+
 .page {
   text-align: center;
 }

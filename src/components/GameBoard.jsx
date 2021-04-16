@@ -37,30 +37,42 @@ function GameBoard(props) {
           return matrix[0][i];
       }
     }
+    const center = matrix[1][1];
+    if (center) {
+      if (matrix[0][0] === center && matrix[2][2] === center) {
+        return center;
+      }
+      if (matrix[2][0] === center && matrix[0][2] === center) {
+        return center;
+      }
+    }
     return false;
   }
 
   return (
-    <div className="board">
-      {
-        gameMatrix.map((row, i) => {
-          return (
-            <div key={'row' + i} className="row">
-              {
-                row.map((box, j) => {
-                  return <div
-                    key={'box' + j}
-                    className="box"
-                    onClick={handleBoxClick}
-                    data-index={'' + i + j}
-                  >{box}</div>
-                })
-              }
-            </div>
-          )
-        })
-      }
-    </div>
+    <>
+      <div className="board">
+        {
+          gameMatrix.map((row, i) => {
+            return (
+              <div key={'row' + i} className="row">
+                {
+                  row.map((box, j) => {
+                    return <div
+                      key={'box' + j}
+                      className="box"
+                      onClick={handleBoxClick}
+                      data-index={'' + i + j}
+                    >{box}</div>
+                  })
+                }
+              </div>
+            )
+          })
+        }
+      </div>
+      {props.winner && <button>Play Again?</button>}
+    </>
   );
 }
 

@@ -12,7 +12,7 @@ function Page() {
   return (
     <div className="page">
       <h1>Tic-Tac-Toe</h1>
-      <p>{winner ? winner + ' Won!' : `It's ${turn}'s turn`}</p>
+      <h3 className={winner ? 'blue' : ''}>{winner ? winner + ' Won!' : `It's ${turn}'s turn`}</h3>
       <GameBoard turn={turn} toggleTurn={toggleTurn} winner={winner} setWinner={setWinner} />
     </div>
   );
