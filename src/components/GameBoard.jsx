@@ -49,6 +49,11 @@ function GameBoard(props) {
     return false;
   }
 
+  function playAgain() {
+    setGameMatrix([[null, null, null], [null, null, null], [null, null, null]]);
+    props.setWinner(false);
+  }
+
   return (
     <>
       <div className="board">
@@ -72,7 +77,7 @@ function GameBoard(props) {
         }
       </div>
       <div>
-        {props.winner && <button>Play Again?</button>}
+        {props.winner && <button onClick={playAgain}>Play Again?</button>}
       </div>
     </>
   );
