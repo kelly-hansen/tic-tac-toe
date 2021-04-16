@@ -71,7 +71,9 @@ function GameBoard(props) {
           })
         }
       </div>
-      {props.winner && <button>Play Again?</button>}
+      <div>
+        {props.winner && <button>Play Again?</button>}
+      </div>
     </>
   );
 }
