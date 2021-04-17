@@ -54,6 +54,11 @@ button {
 }
 
 @media (hover: hover) {
+  button:hover {
+    background-color: #3b3bff;
+    cursor: pointer;
+  }
+
   .box:hover {
     background-color: #d8f3fc;
     cursor: pointer;

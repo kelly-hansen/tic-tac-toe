@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import GameBoard from './GameBoard';
 
 function Page() {
-  const [turn, setTurn] = useState('O');
+  const [turn, setTurn] = useState('X');
   const [winner, setWinner] = useState(false);
 
   function toggleTurn() {

@@ -51,6 +51,9 @@ function GameBoard(props) {
 
   function playAgain() {
     setGameMatrix([[null, null, null], [null, null, null], [null, null, null]]);
+    if (props.turn === 'O') {
+      props.toggleTurn();
+    }
     props.setWinner(false);
   }
 
