@@ -11,12 +11,9 @@ function GameBoard(props) {
     if (gameMatrix[boxIndex[0]][boxIndex[1]]) {
       return;
     } else {
-      let newMatrix;
-      setGameMatrix(prev => {
-        prev[boxIndex[0]][boxIndex[1]] = props.turn;
-        newMatrix = prev;
-        return prev;
-      });
+      let newMatrix = gameMatrix.slice();
+      newMatrix[boxIndex[0]][boxIndex[1]] = props.turn;
+      setGameMatrix(newMatrix);
       const winner = checkForWinner(newMatrix);
       if (winner) {
         props.setWinner(winner);
