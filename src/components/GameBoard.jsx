@@ -43,7 +43,14 @@ function GameBoard(props) {
         return center;
       }
     }
-    return false;
+    for (let i = 0; i < 3; i++) {
+      for (let j= 0; j < 3; j++) {
+        if (!matrix[i][j]) {
+          return false;
+        }
+      }
+    }
+    return 'Tie';
   }
 
   function playAgain() {
