@@ -3,7 +3,15 @@ import { createSelector } from 'reselect';
 
 const slice = createSlice({
   name: 'gameStatus',
-  initialState: { turn: 'X' },
+  initialState: {
+    turn: 'X',
+    winner: false,
+    board: [
+      [null, null, null],
+      [null, null, null],
+      [null, null, null]
+    ]
+  },
   reducers: {
     nextTurn: (gameStatus, action) => {
       gameStatus.turn = gameStatus.turn === 'X' ? 'O' : 'X';
