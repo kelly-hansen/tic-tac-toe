@@ -14,23 +14,23 @@ const slice = createSlice({
     ]
   },
   reducers: {
-    turnUpdated: (gameStatus, action) => {
-      const turn = action.payload;
-      if (turn) {
-        gameStatus.turn = turn;
-      } else {
-        gameStatus.turn = gameStatus.turn === 'X' ? 'O' : 'X';
-      }
-    },
+    // turnUpdated: (gameStatus, action) => {
+    //   const turn = action.payload;
+    //   if (turn) {
+    //     gameStatus.turn = turn;
+    //   } else {
+    //     gameStatus.turn = gameStatus.turn === 'X' ? 'O' : 'X';
+    //   }
+    // },
 
-    winnerUpdated: (gameStatus, action) => {
-      gameStatus.winner = action.payload;
-    },
+    // winnerUpdated: (gameStatus, action) => {
+    //   gameStatus.winner = action.payload;
+    // },
 
-    boardUpdated: (gameStatus, action) => {
-      const { boxIndex, turn } = action.payload;
-      gameStatus.board[boxIndex[0]][boxIndex[1]] = turn;
-    },
+    // boardUpdated: (gameStatus, action) => {
+    //   const { boxIndex, turn } = action.payload;
+    //   gameStatus.board[boxIndex[0]][boxIndex[1]] = turn;
+    // },
 
     updateBoard: (gameStatus, action) => {
       const { boxIndex, turn } = action.payload;
@@ -55,10 +55,14 @@ const slice = createSlice({
   }
 });
 
-export const { turnUpdated, winnerUpdated, boardUpdated } = slice.actions;
+export const { turnUpdated, winnerUpdated, boardUpdated, updateBoard, gameReset } = slice.actions;
 export default slice.reducer;
 
-
+// Dispatch actions within larger actions for updateBoard & resetGame?
+// export const updateBoard = (boxIndex, turn) => (dispatch, getState) => {
+//     dispatch(boardUpdated({ boxIndex, turn }));
+//   const newWinner = checkForWinner(gameStatus.board);
+// }
 
 export const selectGameStatus = createSelector(
   state => state.entities.gameStatus,
