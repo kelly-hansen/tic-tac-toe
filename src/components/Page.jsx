@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import GameBoard from './GameBoard';
+import { useSelector } from 'react-redux';
+import { selectTurn } from '../store/gameStatus';
 
 function Page() {
-  const [turn, setTurn] = useState('X');
-  const [winner, setWinner] = useState(false);
+  const turn = useSelector(selectTurn);
 
-  function toggleTurn() {
-    setTurn(prevTurn => prevTurn === 'O' ? 'X' : 'O');
-  }
+  const [winner, setWinner] = useState(false);
 
   return (
     <div className="page">
@@ -21,7 +20,7 @@ function Page() {
           {`${turn}'s Turn`}
         </h3>
       }
-      <GameBoard turn={turn} toggleTurn={toggleTurn} winner={winner} setWinner={setWinner} />
+      <GameBoard winner={winner} setWinner={setWinner} />
     </div>
   );
 }

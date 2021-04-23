@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectTurn } from '../store/turn';
+import { useSelector, useDispatch } from 'react-redux';
+import { nextTurn, resetTurn, selectTurn } from '../store/gameStatus';
 
 function GameBoard(props) {
   const turn = useSelector(selectTurn);
-  console.log(turn);
+  const dispatch = useDispatch();
 
   const [gameMatrix, setGameMatrix] = useState([[null, null, null], [null, null, null], [null, null, null]]);
 
@@ -17,13 +17,13 @@ function GameBoard(props) {
       return;
     } else {
       let newMatrix = gameMatrix.slice();
-      newMatrix[boxIndex[0]][boxIndex[1]] = props.turn;
+      newMatrix[boxIndex[0]][boxIndex[1]] = turn;
       setGameMatrix(newMatrix);
       const winner = checkForWinner(newMatrix);
       if (winner) {
         props.setWinner(winner);
       } else {
-        props.toggleTurn();
+        dispatch(nextTurn());
       }
     }
   }
@@ -60,9 +60,7 @@ function GameBoard(props) {
 
   function playAgain() {
     setGameMatrix([[null, null, null], [null, null, null], [null, null, null]]);
-    if (props.turn === 'O') {
-      props.toggleTurn();
-    }
+    dispatch(resetTurn());
     props.setWinner(false);
   }
 

@@ -2,15 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
 
 const slice = createSlice({
-  name: 'turn',
-  initialState: 'X',
+  name: 'gameStatus',
+  initialState: { turn: 'X' },
   reducers: {
-    nextTurn: (turn, action) => {
-      turn = turn === 'X' ? 'O' : 'X';
+    nextTurn: (gameStatus, action) => {
+      gameStatus.turn = gameStatus.turn === 'X' ? 'O' : 'X';
     },
 
-    resetTurn: (turn, action) => {
-      turn = 'X';
+    resetTurn: (gameStatus, action) => {
+      gameStatus.turn = 'X';
     }
   }
 });
@@ -19,6 +19,6 @@ export const { nextTurn, resetTurn } = slice.actions;
 export default slice.reducer;
 
 export const selectTurn = createSelector(
-  state => state.entities.turn,
+  state => state.entities.gameStatus.turn,
   turn => turn
 );

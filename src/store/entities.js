@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import turnReducer from './turn';
+import gameStatusReducer from './gameStatus';
 
 export default combineReducers({
-  turn: turnReducer
+  gameStatus: gameStatusReducer
 });
