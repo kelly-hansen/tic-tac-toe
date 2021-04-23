@@ -22,6 +22,11 @@ const slice = createSlice({
       gameStatus.winner = action.payload;
     },
 
+    boardUpdated: (gameStatus, action) => {
+      const { boxIndex, turn } = action.payload;
+      gameStatus.board[boxIndex[0]][boxIndex[1]] = turn;
+    },
+
     updateBoard: (gameStatus, action) => {
       const { boxIndex, turn } = action.payload;
       gameStatus.board[boxIndex[0]][boxIndex[1]] = turn;
