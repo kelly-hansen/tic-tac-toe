@@ -17,10 +17,6 @@ const slice = createSlice({
       gameStatus.turn = gameStatus.turn === 'X' ? 'O' : 'X';
     },
 
-    resetTurn: (gameStatus, action) => {
-      gameStatus.turn = 'X';
-    },
-
     updateWinner: (gameStatus, action) => {
       gameStatus.winner = action.payload;
     },
@@ -28,11 +24,21 @@ const slice = createSlice({
     updateBoard: (gameStatus, action) => {
       const { boxIndex, turn } = action.payload;
       gameStatus.board[boxIndex[0]][boxIndex[1]] = turn;
+    },
+
+    gameReset: (gameStatus, action) => {
+      gameStatus.turn = 'X';
+      gameStatus.winner = false;
+      gameStatus.board = [
+        [null, null, null],
+        [null, null, null],
+        [null, null, null]
+      ];
     }
   }
 });
 
-export const { nextTurn, resetTurn, updateWinner, updateBoard } = slice.actions;
+export const { nextTurn, updateWinner, updateBoard, gameReset } = slice.actions;
 export default slice.reducer;
 
 export const selectGameStatus = createSelector(
