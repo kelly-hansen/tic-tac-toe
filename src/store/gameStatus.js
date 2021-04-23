@@ -26,7 +26,7 @@ const slice = createSlice({
 export const { nextTurn, resetTurn } = slice.actions;
 export default slice.reducer;
 
-export const selectTurn = createSelector(
-  state => state.entities.gameStatus.turn,
-  turn => turn
+export const selectGameStatus = createSelector(
+  state => state.entities.gameStatus,
+  gameStatus => gameStatus
 );

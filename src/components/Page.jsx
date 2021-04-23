@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import GameBoard from './GameBoard';
 import { useSelector } from 'react-redux';
-import { selectTurn } from '../store/gameStatus';
+import { selectGameStatus } from '../store/gameStatus';
 
 function Page() {
-  const turn = useSelector(selectTurn);
+  const { turn } = useSelector(selectGameStatus);
 
   const [winner, setWinner] = useState(false);
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextTurn, resetTurn, selectTurn } from '../store/gameStatus';
+import { nextTurn, resetTurn, selectGameStatus } from '../store/gameStatus';
 
 function GameBoard(props) {
-  const turn = useSelector(selectTurn);
+  const { turn } = useSelector(selectGameStatus);
   const dispatch = useDispatch();
 
   const [gameMatrix, setGameMatrix] = useState([[null, null, null], [null, null, null], [null, null, null]]);
