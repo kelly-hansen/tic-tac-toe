@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import GameBoard from './GameBoard';
 import { useSelector } from 'react-redux';
 import { selectGameStatus } from '../store/gameStatus';
 
 function Page() {
-  const { turn } = useSelector(selectGameStatus);
-
-  const [winner, setWinner] = useState(false);
+  const { turn, winner } = useSelector(selectGameStatus);
 
   return (
     <div className="page">
@@ -20,7 +18,7 @@ function Page() {
           {`${turn}'s Turn`}
         </h3>
       }
-      <GameBoard winner={winner} setWinner={setWinner} />
+      <GameBoard />
     </div>
   );
 }

@@ -19,11 +19,15 @@ const slice = createSlice({
 
     resetTurn: (gameStatus, action) => {
       gameStatus.turn = 'X';
+    },
+
+    updateWinner: (gameStatus, action) => {
+      gameStatus.winner = action.payload;
     }
   }
 });
 
-export const { nextTurn, resetTurn } = slice.actions;
+export const { nextTurn, resetTurn, updateWinner } = slice.actions;
 export default slice.reducer;
 
 export const selectGameStatus = createSelector(

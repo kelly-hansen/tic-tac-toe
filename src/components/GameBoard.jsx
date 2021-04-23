@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextTurn, resetTurn, selectGameStatus } from '../store/gameStatus';
+import { nextTurn, resetTurn, updateWinner, selectGameStatus } from '../store/gameStatus';
 
 function GameBoard(props) {
-  const { turn } = useSelector(selectGameStatus);
+  const { turn, winner } = useSelector(selectGameStatus);
   const dispatch = useDispatch();
 
   const [gameMatrix, setGameMatrix] = useState([[null, null, null], [null, null, null], [null, null, null]]);
 
   function handleBoxClick(e) {
-    if (props.winner) {
+    if (winner) {
       return;
     }
     const boxIndex = e.target.getAttribute('data-index').split('');
@@ -19,9 +19,9 @@ function GameBoard(props) {
       let newMatrix = gameMatrix.slice();
       newMatrix[boxIndex[0]][boxIndex[1]] = turn;
       setGameMatrix(newMatrix);
-      const winner = checkForWinner(newMatrix);
-      if (winner) {
-        props.setWinner(winner);
+      const newWinner = checkForWinner(newMatrix);
+      if (newWinner) {
+        dispatch(updateWinner(newWinner));
       } else {
         dispatch(nextTurn());
       }
@@ -61,7 +61,7 @@ function GameBoard(props) {
   function playAgain() {
     setGameMatrix([[null, null, null], [null, null, null], [null, null, null]]);
     dispatch(resetTurn());
-    props.setWinner(false);
+    dispatch(updateWinner(false));
   }
 
   return (
@@ -87,7 +87,7 @@ function GameBoard(props) {
         }
       </div>
       <div>
-        {props.winner && <button onClick={playAgain}>Play Again?</button>}
+        {winner && <button onClick={playAgain}>Play Again?</button>}
       </div>
     </>
   );
