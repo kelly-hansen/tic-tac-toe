@@ -14,6 +14,14 @@ const slice = createSlice({
     ]
   },
   reducers: {
+    nextTurn: (gameStatus, action) => {
+      gameStatus.turn = gameStatus.turn === 'X' ? 'O' : 'X';
+    },
+
+    updateWinner: (gameStatus, action) => {
+      gameStatus.winner = action.payload;
+    },
+
     updateBoard: (gameStatus, action) => {
       const { boxIndex, turn } = action.payload;
       gameStatus.board[boxIndex[0]][boxIndex[1]] = turn;

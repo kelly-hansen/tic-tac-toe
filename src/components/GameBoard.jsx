@@ -18,10 +18,6 @@ function GameBoard(props) {
     }
   }
 
-  function playAgain() {
-    dispatch(gameReset());
-  }
-
   return (
     <>
       <div className="board">
@@ -45,7 +41,7 @@ function GameBoard(props) {
         }
       </div>
       <div>
-        {winner && <button onClick={playAgain}>Play Again?</button>}
+        {winner && <button onClick={() => dispatch(gameReset())}>Play Again?</button>}
       </div>
     </>
   );
