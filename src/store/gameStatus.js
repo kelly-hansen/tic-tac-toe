@@ -14,11 +14,11 @@ const slice = createSlice({
     ]
   },
   reducers: {
-    nextTurn: (gameStatus, action) => {
+    turnUpdated: (gameStatus, action) => {
       gameStatus.turn = gameStatus.turn === 'X' ? 'O' : 'X';
     },
 
-    updateWinner: (gameStatus, action) => {
+    winnerUpdated: (gameStatus, action) => {
       gameStatus.winner = action.payload;
     },
 
