@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nextTurn, resetTurn, updateWinner, updateBoard, selectGameStatus } from '../store/gameStatus';
 
 function GameBoard(props) {
   const { turn, winner, board } = useSelector(selectGameStatus);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const newWinner = checkForWinner(board);
+    if (newWinner) {
+      dispatch(updateWinner(newWinner));
+    } else {
+      dispatch(nextTurn());
+    }
+  }, [board]);
 
   function handleBoxClick(e) {
     if (winner) {
@@ -15,12 +24,6 @@ function GameBoard(props) {
       return;
     } else {
       dispatch(updateBoard({ boxIndex, turn }));
-      const newWinner = checkForWinner(board);
-      if (newWinner) {
-        dispatch(updateWinner(newWinner));
-      } else {
-        dispatch(nextTurn());
-      }
     }
   }
 
