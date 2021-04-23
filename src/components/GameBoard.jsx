@@ -1,25 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextTurn, resetTurn, updateWinner, selectGameStatus } from '../store/gameStatus';
+import { nextTurn, resetTurn, updateWinner, updateBoard, selectGameStatus } from '../store/gameStatus';
 
 function GameBoard(props) {
-  const { turn, winner } = useSelector(selectGameStatus);
+  const { turn, winner, board } = useSelector(selectGameStatus);
   const dispatch = useDispatch();
-
-  const [gameMatrix, setGameMatrix] = useState([[null, null, null], [null, null, null], [null, null, null]]);
 
   function handleBoxClick(e) {
     if (winner) {
       return;
     }
     const boxIndex = e.target.getAttribute('data-index').split('');
-    if (gameMatrix[boxIndex[0]][boxIndex[1]]) {
+    if (board[boxIndex[0]][boxIndex[1]]) {
       return;
     } else {
-      let newMatrix = gameMatrix.slice();
-      newMatrix[boxIndex[0]][boxIndex[1]] = turn;
-      setGameMatrix(newMatrix);
-      const newWinner = checkForWinner(newMatrix);
+      dispatch(updateBoard({ boxIndex, turn }));
+      const newWinner = checkForWinner(board);
       if (newWinner) {
         dispatch(updateWinner(newWinner));
       } else {
@@ -59,7 +55,7 @@ function GameBoard(props) {
   }
 
   function playAgain() {
-    setGameMatrix([[null, null, null], [null, null, null], [null, null, null]]);
+    dispatch(updateBoard([[null, null, null], [null, null, null], [null, null, null]]));
     dispatch(resetTurn());
     dispatch(updateWinner(false));
   }
@@ -68,7 +64,7 @@ function GameBoard(props) {
     <>
       <div className="board">
         {
-          gameMatrix.map((row, i) => {
+          board.map((row, i) => {
             return (
               <div key={'row' + i} className="row">
                 {
