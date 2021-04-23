@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectTurn } from '../store/turn';
 
 function GameBoard(props) {
+  const turn = useSelector(selectTurn);
+  console.log(turn);
+
   const [gameMatrix, setGameMatrix] = useState([[null, null, null], [null, null, null], [null, null, null]]);
 
   function handleBoxClick(e) {
