@@ -55,8 +55,10 @@ const slice = createSlice({
   }
 });
 
-export const { nextTurn, updateWinner, updateBoard, gameReset } = slice.actions;
+export const { turnUpdated, winnerUpdated, boardUpdated } = slice.actions;
 export default slice.reducer;
+
+
 
 export const selectGameStatus = createSelector(
   state => state.entities.gameStatus,
